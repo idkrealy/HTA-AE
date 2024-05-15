@@ -1,0 +1,101 @@
+political_decisions = {	
+		core_korea = {
+		picture = annex_korea
+		potential = {
+			tag = JAP
+			civilized = yes
+			NOT = { has_country_flag = claimed_korea }
+		}
+		
+		allow = {
+			war = no
+		}
+		
+		effect = {
+			set_country_flag = claimed_korea
+			badboy = 5
+			KOR = {
+				all_core = { add_core = THIS }
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.8
+			}
+		}
+	} 	
+	
+	inherit_ryukyu = {
+		potential = {
+			OR = {
+				tag = CHI
+				tag = JAP
+			}
+			exists = RYU
+			NOT = { has_global_flag = ryukyu_inherited }
+		}
+
+		allow = {
+			civilized = yes
+			war = no
+			RYU = { war = no }
+			OR = {
+				RYU = { part_of_sphere = no }
+				RYU = { in_sphere = THIS }
+			}	
+		}
+
+		effect = {
+			set_global_flag = ryukyu_inherited
+			1678 = { add_core = THIS }
+			1679 = { add_core = THIS }
+			inherit = RYU
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	barbarian_islands = {
+		picture = begin_line_of_advantage
+		potential = {
+			tag = JAP
+			NOT = { has_country_flag = settle_barbarians }
+		}
+		
+		allow = {
+			war = no
+			OR = {
+				is_greater_power = yes
+				is_secondary_power = yes
+			}
+		}
+		
+		effect = {
+			set_country_flag = settle_barbarians
+			badboy = 3
+			prestige = 5
+			MDG = {
+				all_core = { add_core = THIS }
+				relation = { who = THIS value = -100 }
+				diplomatic_influence = { who = THIS value = -150 }
+			}
+			AIN = {
+				all_core = { add_core = THIS }
+				relation = { who = THIS value = -100 }
+				diplomatic_influence = { who = THIS value = -150 }
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.8
+			}
+		}
+	}
+}

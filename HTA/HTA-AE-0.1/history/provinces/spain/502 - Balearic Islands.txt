@@ -1,0 +1,12 @@
+owner = AQT
+
+controller = AQT
+
+add_core = CAT
+
+trade_goods = cattle
+
+life_rating = 35
+
+
+

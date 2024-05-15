@@ -1,0 +1,242 @@
+political_decisions = {
+	scaglia_decree = {
+		picture = the_rights_of_man
+		potential = {
+			OR = {
+				tag = NPL
+				tag = ITA
+			}
+			NOT = { has_country_flag = cis_accepted }
+		}
+		
+		allow = {
+			owns = 744
+			owns = 743
+			owns = 724
+			owns = 729
+		}
+		
+		effect = {
+			prestige = 5
+			add_accepted_culture = north_italian
+			set_country_flag = cis_accepted
+			TUS_744 = { add_core = THIS }
+			RMG = { all_core = { add_core = THIS } }
+			PDN = { all_core = { add_core = THIS } }
+			TUS = { all_core = { add_core = THIS } }
+		}
+	}
+	law_of_guarantees = {
+		potential = {
+			tag = ITA
+			NOT = { has_country_flag = law_of_guarantees_flag }
+			any_owned_province = {
+				OR = {
+					is_core = NPL
+					is_core = PAP
+				}
+			}
+		}
+
+		allow = {
+			owns = 749
+		}
+
+		effect = {
+			set_country_flag = law_of_guarantees_flag
+			capital = 749
+			prestige = 5
+			badboy = -2
+			any_owned = {
+				limit = {
+					OR = {
+						is_core = NPL
+						is_core = PAP
+					}
+				}
+				add_core = ITA
+				remove_core = NPL
+				remove_core = PAP
+			}
+		}
+	}
+	
+	#This one can be used for some future time when ITA and PDN have duked it out a bit and ITA decides to take over PDN
+	law_of_guarantees2 = {
+		picture = law_of_guarantees
+		potential = {
+			tag = ITA
+			has_country_flag = law_of_guarantees_flag
+			any_owned_province = {
+				OR = {
+					is_core = NPL
+					AND = { 
+						is_core = PDN
+						PDN = { exists = no }
+					}
+					is_core = SRD
+					is_core = DAU
+					is_core = MOD
+					is_core = TUS
+					is_core = LUC
+					is_core = PAR
+					is_core = PAP
+					is_core = PDN
+					is_core = LOM
+					is_core = RMG
+					is_core = GEN
+					is_core = VEN
+					is_core = DLM
+				}
+			}
+		}
+
+		allow = {
+			owns = 749
+			owns = 726
+		}
+
+		effect = {
+			any_owned = {
+				limit = {
+					is_core = ITA
+				}
+				remove_core = NPL
+				remove_core = SRD
+				remove_core = DAU
+				remove_core = CRS
+				remove_core = MOD
+				remove_core = TUS
+				remove_core = LUC
+				remove_core = PAR
+				remove_core = PAP
+				remove_core = LOM
+				remove_core = RMG
+				remove_core = GEN
+				remove_core = VEN
+				remove_core = DLM
+				remove_core = PDN
+			}
+		}
+	}	
+
+	italia_irredenta = {
+		potential = {
+			tag = ITA
+			NOT = { has_country_flag = italia_ulterior }
+		}
+
+		allow = {
+			invention = national_fraternity
+			is_greater_power = yes
+		}
+
+		effect = {
+			set_country_flag = italia_ulterior
+			AUS_736 = {
+				add_core = ITA
+			}	
+			780 = {
+				add_core = ITA
+			}
+			781 = {
+				add_core = ITA
+			}
+			782 = {
+				add_core = ITA
+			}
+			2582 = {
+				add_core = ITA
+			}
+		}
+	}	
+	
+	claim_the_rest_of_the_adriatic = {
+		potential = { 
+			tag = ITA
+			has_country_flag = italia_ulterior
+			NOT = { has_country_flag = claimed_albania }
+		}
+		allow = {
+			AUS_736 = { owned_by = THIS }
+			780 = { owned_by = THIS }
+			781 = { owned_by = THIS }
+			782 = { owned_by = THIS }
+			2582 = { owned_by = THIS }
+		}
+		effect = {
+			TUR_853 = { add_core = ITA }
+			set_country_flag = claimed_albania
+			prestige = 15
+		}
+	}
+		
+
+	cisalpines_are_italian = {
+		picture = marching_soldiers
+		potential = {
+			tag = ITA
+			NOT = { has_country_flag = padan_claimed }
+		}
+		
+		allow = {
+			owns = 743
+		}
+		
+		effect = {
+			set_country_flag = padan_claimed
+			PDN = {
+				all_core = {
+					add_core = ITA
+				}
+			}
+			RMG = {
+				all_core = {
+					add_core = ITA
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.8
+			}
+		}
+	}
+
+	maretans_are_italian = {
+		picture = marching_soldiers
+		potential = {
+			tag = ITA
+			NOT = { has_country_flag = maretans_are_italian }
+		}
+		
+		allow = {
+			owns = 744
+		}
+		
+		effect = {
+			prestige = 5
+			badboy = 5
+			CRS = {
+				all_core = {
+					add_core = ITA
+				}
+			}
+			SRD = {
+				all_core = {
+					add_core = ITA
+				}
+			}
+			set_country_flag = maretans_are_italian
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.8
+			}
+		}
+	}
+}

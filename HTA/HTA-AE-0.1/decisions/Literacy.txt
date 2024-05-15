@@ -1,0 +1,61 @@
+political_decisions = {
+	literacy_all = {
+		potential = {
+			ai = yes
+			NOT = { has_global_flag = literacy_fixed }
+			NOT = {
+				any_neighbor_country = {
+					ai = no
+				}
+			}
+		}
+		
+		allow = {
+			ai = yes
+		}
+		
+		effect = {
+			set_global_flag = literacy_fixed
+			any_country = {
+				limit = {
+					is_culture_group = germanic
+					NOT = { tag = BRC }
+				}
+				any_pop = {
+					limit = { has_pop_culture = ashkenazi }
+					literacy = 0.20
+				}
+			}
+			any_country = {
+				limit = {
+					NOT = { is_culture_group = germanic }
+				}
+				any_pop = {
+					limit = {
+						OR = {
+							has_pop_culture = ashkenazi
+							has_pop_culture = sephardic
+						}
+					}
+					literacy = 0.05
+				}
+			}
+			any_country = {
+				slaves = {
+					literacy = -0.05
+				}
+			}
+			any_country = {
+				any_pop = {
+					limit = {
+						OR = {
+							is_culture_group = native_american
+							is_culture_group = oceanic
+						}
+					}
+					literacy = -0.03
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,516 @@
+political_decisions = {
+	sell_solelha = {
+		potential = {
+			tag = AQT
+			NOT = { has_country_flag = sell_solelha }
+			NOT = { has_global_flag = solelha_sold }
+			slavery = no_slavery
+			war = no
+		}
+		
+		allow = {
+			slavery = no_slavery
+			200 = { owned_by = THIS }
+		}
+		
+		effect = {
+			set_country_flag = sell_solelha
+			MRG = {	
+				country_event = {
+					id = 51001
+					days = 2
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { year = 1845 }
+					slavery = yes_slavery
+				}
+			}
+		}
+	}
+	
+	new_life_in_the_new_world = {
+		picture = new_life
+		potential = {
+			OR = {
+				capital_scope = { continent = north_america }
+				capital_scope = { continent = south_america }
+				tag = TER
+				tag = NFB
+			}
+			NOT = { has_country_flag = come_to_the_new_world }
+			NOT = { has_country_flag = has_native_societies }
+			number_of_states = 2
+			num_of_ports = 1
+			is_vassal = no
+			civilized = yes
+		}
+		
+		allow = {
+			OR = {
+				government = democracy
+				government = hms_government
+			}
+		}
+		
+		effect = {
+			set_country_flag = come_to_the_new_world
+			add_country_modifier = { name = small_immigration_boom duration = 1825 }
+		}
+	}
+	
+
+	##### About the SKM-GNC union nation - Scylfiga Woning SCW  #########
+	annex_ginnaecer = {
+		picture = marching_soldiers
+		potential = {
+		OR = {
+			tag = CLF
+			tag = SKM
+			tag = MRG
+		}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			is_disarmed = no
+			war = no
+			NOT = { alliance_with = GNC }
+			NOT = { has_country_flag = annex_ginnaecer }
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					tag = MRG
+					neighbour = GNC
+				}
+				AND = {
+					tag = SKM
+					neighbour = GNC
+				}
+				AND = { 
+					tag = CLF
+					neighbour = GNC
+				}
+			}
+
+		}
+		
+		effect = {
+			badboy = 15
+			GNC = { all_core = { add_core = THIS } }
+			set_country_flag = annex_ginnaecer
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}
+	annex_skamisc = {
+		picture = marching_soldiers
+		potential = {
+		OR = {
+			tag = GNC
+			tag = CLF
+			tag = MRG
+		}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			is_disarmed = no
+			war = no
+			NOT = { alliance_with = SKM }
+			NOT = { has_country_flag = annex_skamisc }
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					tag = GNC
+					neighbour = SKM
+				}
+				AND = {
+					tag = MRG
+					neighbour = SKM
+				}
+				AND = { 
+					tag = CLF
+					neighbour = SKM
+				}
+			}
+
+		}		
+		effect = {
+			badboy = 15
+			SKM = { all_core = { add_core = THIS } }
+			set_country_flag = annex_skamisc
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}
+	annex_margaria = {
+		picture = marching_soldiers
+		potential = {
+		OR = {
+			tag = GNC
+			tag = SKM
+			tag = CLF
+		}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			is_disarmed = no
+			war = no
+			NOT = { alliance_with = MRG }
+			NOT = { has_country_flag = annex_margaria }
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					tag = GNC
+					neighbour = MRG
+				}
+				AND = {
+					tag = SKM
+					neighbour = MRG
+				}
+				AND = { 
+					tag = CLF
+					neighbour = MRG
+				}
+			}
+		}
+		
+		effect = {
+			badboy = 15
+			MRG = { all_core = { add_core = THIS } }
+			set_country_flag = annex_margaria
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}		
+	form_scylfiga_woning = { 
+		picture = manifest_destiny
+		potential = {
+			OR = {
+				tag = GNC
+				tag = SKM
+				tag = MRG
+			}
+			SCW = { exists = no }
+		}
+		
+		allow = {
+			SKM = {
+				OR = {
+					is_vassal = yes
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+				}
+			}
+			GNC = {
+				OR = {
+					is_vassal = yes
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+				}
+			}
+			MRG = {
+				OR = {
+					is_vassal = yes
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+				}
+			}
+		}
+		effect = {
+			add_accepted_culture = skamisc
+			add_accepted_culture = margarian
+			add_accepted_culture = califiano
+			add_accepted_culture = afro_american
+			change_tag = SCW
+		}
+	}
+invade_the_mexicans_scw = {
+		potential = {
+			tag = SCW
+			NOT = { has_country_flag = mexico_invaded_scw }
+		}
+		allow = {
+			SCW = { all_core = { owned_by = SCW } }
+		}
+		effect = {
+			add_accepted_culture = meikan
+			add_accepted_culture = mellomsk
+			set_country_flag = mexico_invaded_scw
+		}
+	}
+
+	### End SCW decisions #########
+
+	
+
+	form_the_northeastern_union = {
+		potential = {
+			OR = {
+				tag = VST
+				tag = QUE
+				tag = NHL
+			}
+		NOT = { tag = NEU }
+		}
+		allow = {
+			VST = {
+				OR = {
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+					vassal_of = THIS
+				}
+			}
+			QUE = {
+				OR = {
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+					vassal_of = THIS
+				}
+			}
+			NHL = {
+				OR = { 
+					all_core = { owner = { in_sphere = THIS } }
+					all_core = { owned_by = THIS }
+					vassal_of = THIS
+				}
+			}
+		}
+		effect = {
+			add_accepted_culture = vestlandic
+			add_accepted_culture = french_canadian
+			add_accepted_culture = nieuwlander
+			add_accepted_culture = afro_american
+			inherit = NHL
+			inherit = QUE
+			VST = { all_core = { add_core = NEU } }
+			NHL = { all_core = { add_core = NEU } }
+			QUE = { all_core = { add_core = NEU } }
+			change_tag = NEU
+		}
+	}
+	annex_quebec = {
+		potential = {
+			OR = { 
+				tag = NHL
+				tag = VST
+			}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			war = no
+			NOT = { alliance_with = QUE }
+			NOT = { has_country_flag = annex_quebec }
+		}
+		allow = {
+			OR = {
+				AND = {
+					tag = VST
+					neighbour = QUE
+				}
+				AND = {
+					tag = NHL
+					neighbour = QUE
+				}
+			}
+		}		
+		effect = {
+			badboy = 10
+			QUE = { all_core = { add_core = THIS } }
+			set_country_flag = annex_quebec
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}	
+	annex_new_holland = {
+		potential = {
+			OR = { 
+				tag = QUE
+				tag = VST
+			}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			war = no
+			NOT = { alliance_with = MRG }
+			NOT = { has_country_flag = annex_new_holland }
+		}
+		allow = {
+			OR = {
+				AND = {
+					tag = VST
+					neighbour = NHL
+				}
+				AND = {
+					tag = QUE
+					neighbour = NHL
+				}
+			}
+		}
+		effect = {
+			badboy = 10
+			NHL = { all_core = { add_core = THIS } }
+			set_country_flag = annex_new_holland
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}	
+	annex_vestland = {
+		potential = {
+			OR = { 
+				tag = NHL
+				tag = QUE
+			}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes 
+					year = 1840
+				}
+			}
+			war = no
+			NOT = { alliance_with = VST }
+			NOT = { has_country_flag = annex_vestland }
+		}
+		allow = {
+			OR = {
+				AND = {
+					tag = NHL
+					neighbour = VST
+				}
+				AND = {
+					tag = QUE
+					neighbour = VST
+				}
+			}
+		}		
+		effect = {
+			badboy = 10
+			VST = { all_core = { add_core = THIS } }
+			set_country_flag = annex_vestland
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.6
+			}
+		}
+	}	
+	invade_the_southern_europeans = {
+		potential = {
+			tag = MEX
+			NOT = { has_country_flag = south_invaded }
+		}
+		allow = {
+			YUC = { all_core = { owned_by = THIS } }
+		}
+		effect = {
+			badboy = 15
+			add_accepted_culture = mellomsk
+			MDT = { all_core = { add_core = MEX } }
+			MNK = { all_core = { add_core = MEX } }
+			YUC = { all_core = { add_core = MEX } }
+			set_country_flag = south_invaded
+		}
+	}
+	invade_the_north_mex = {
+		potential = {
+			tag = MEX
+			NOT = { has_country_flag = north_invaded_mex }
+		}
+		allow = {
+			USA_138 = { owned_by = THIS }
+			MEX_2142 = { owned_by = THIS }
+		}
+		effect = {
+			badboy = 15
+			add_accepted_culture = skamisc
+			add_accepted_culture = margarian
+			MEX_85 = { add_core = MEX }
+			MEX_2138 = { add_core = MEX }
+			100 = { add_core = MEX }
+			102 = { add_core = MEX }
+			set_country_flag = north_invaded_mex
+		}
+	}
+
+	invade_the_north = {
+		potential = {
+			tag = MEL
+			NOT = { has_country_flag = north_invaded }
+		}
+		allow = {
+			YUC = { all_core = { owned_by = THIS } }
+		}
+		effect = {
+			add_accepted_culture = meikan
+			add_accepted_culture = skamisc
+			add_accepted_culture = margarian
+			YUC = { all_core = { add_core = MEL } }
+			set_country_flag = north_invaded
+		}
+	}
+}

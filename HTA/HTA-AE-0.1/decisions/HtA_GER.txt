@@ -1,0 +1,69 @@
+political_decisions = {
+
+	claim_empire_BAV = {
+		picture = form_germany
+		
+		potential = {
+			tag = BAV
+			NOT = { has_country_flag = claim_empire_bav }
+		}
+		
+		allow = {
+			536 = { owned_by = THIS }
+			549 = { owned_by = THIS }
+			575 = { owned_by = THIS }
+			599 = { owned_by = THIS }
+		}
+		
+		effect = {
+			prestige = 25
+			GER = { all_core = { add_core = BAV } }
+			set_country_flag = claim_empire_bav
+			any_pop = {
+				consciousness = 2
+			}
+		}
+	}
+	claim_empire_BRA = {
+		picture = form_germany
+		
+		potential = {
+			tag = BRA
+			NOT = { has_country_flag = claim_empire_BRA }
+		}
+		
+		allow = {
+			536 = { owned_by = THIS }
+			549 = { owned_by = THIS }
+			575 = { owned_by = THIS }
+			599 = { owned_by = THIS }
+		}
+		
+		effect = {
+			prestige = 25
+			GER = { all_core = { add_core = BRA } }
+			set_country_flag = claim_empire_bra
+		}
+	}
+	claim_empire_BRN = {
+		picture = form_germany
+		
+		potential = {
+			tag = BRN
+			NOT = { has_country_flag = claim_empire_brn }
+		}
+		
+		allow = {
+			536 = { owned_by = THIS }
+			549 = { owned_by = THIS }
+			572 = { owned_by = THIS }			
+			599 = { owned_by = THIS }
+		}
+		
+		effect = {
+			prestige = 25
+			GER = { all_core = { add_core = BRN } }
+			set_country_flag = claim_empire_brn
+		}
+	}
+}

@@ -1,0 +1,633 @@
+
+country_event = {
+	id = 2560
+	title = "The Buffer State"
+	desc = "This so-called 'buffer state' will not stop us."
+	picture = "administration"
+	
+	trigger = {
+		ai = yes
+		any_neighbor_country = {
+			is_vassal = yes
+			NOT = { vassal_of = THIS }
+			overlord = { NOT = { truce_with = THIS } }
+			OR = {
+				any_owned_province = { is_core = THIS }
+				overlord = {
+					NOT = { relation = { who = THIS value = -50 } }
+					NOT = { neighbour = THIS }
+				}
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+		modifier = {
+			factor = 0.5
+			war = yes
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_country = {
+				is_vassal = yes
+				overlord = { war_with = THIS }
+			}
+		}
+	}
+	
+	option = {
+		name = "Enough is enough."
+		any_neighbor_country = {
+			limit = {
+				is_vassal = yes
+				NOT = { vassal_of = THIS }
+				overlord = { NOT = { truce_with = THIS } }
+				OR = {
+					any_owned_province = { is_core = THIS }
+					overlord = {
+						NOT = { relation = { who = THIS value = -50 } }
+						NOT = { neighbour = THIS }
+					}
+				}
+			}
+			overlord = {
+				relation = { who = THIS value = -50 }
+				leave_alliance = THIS
+				add_casus_belli = {
+					target = THIS
+					type = release_puppet
+					months = 24
+				}
+			}
+			add_country_modifier = {
+				name = buffer_state_spam_reduction
+				duration = 720
+			}
+		}
+	}
+}
+
+#########################################################
+#														#
+#           		Gain Core Events					#
+#														#
+#########################################################
+
+province_event = {
+	id = 2600
+	title = "EVTNAME2600" #$STATENAME$ Integration
+	desc = "EVTDESC2600"
+	
+	trigger = {
+		NOT = {
+			is_core = THIS
+			has_province_modifier = core_integration
+			has_province_modifier = integration_refusal
+			has_province_modifier = nationalist_agitation
+		}
+		controlled_by = THIS
+		owned_by = THIS
+		is_colonial = no
+		OR = {
+			is_primary_culture = yes
+			is_accepted_culture = yes
+		}
+		owner = {
+			civilized = yes
+			is_vassal = no
+			war = no
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 100
+		modifier = {
+			factor = 0.75
+			owner = { nationalism_n_imperialism = 1 }
+		}
+		modifier = {
+			factor = 1.5
+			is_primary_culture = no
+			is_accepted_culture = yes
+		}
+		modifier = {
+			factor = 1.5
+			state_scope = {
+				any_owned_province = {
+					is_primary_culture = no
+					is_accepted_culture = no
+				}
+			}
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 2
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 3
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 4
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 5
+		}
+	}
+	
+	option = {
+		name = "We should begin integrating $STATENAME$."
+		state_scope = {
+			any_owned = {
+				limit = {
+					NOT = { is_core = THIS }
+					NOT = { has_province_modifier = core_integration }
+					NOT = { has_province_modifier = integration_refusal }
+					controlled_by = THIS
+					is_colonial = no
+				}
+				add_province_modifier = {
+					name = core_integration
+					duration = -1
+				}
+				any_pop = {
+					limit = {
+						is_primary_culture = no
+						is_accepted_culture = no
+					}
+					consciousness = 5
+				}
+			}
+		}
+		ai_chance = {
+			factor = 75
+			modifier = {
+				factor = 0.1
+				owner = { war_policy = pacifism }
+			}
+			modifier = {
+				factor = 0.5
+				owner = { war_policy = anti_military }
+			}
+			modifier = {
+				factor = 0.1
+				owner = { badboy = 0.92 }
+			}
+			modifier = {
+				factor = 0.75
+				owner = { badboy = 0.8 }
+			}
+			modifier = {
+				factor = 0.75
+				owner = { badboy = 0.7 }
+			}
+		}
+	}
+	
+	option = {
+		name = "Let $STATENAME$ remain separate, for now."
+		state_scope = {
+			any_owned = {
+				limit = {
+					NOT = { is_core = THIS }
+					NOT = { has_province_modifier = core_integration }
+					NOT = { has_province_modifier = integration_refusal }
+					controlled_by = THIS
+					is_colonial = no
+				}
+				add_province_modifier = {
+					name = integration_refusal
+					duration = 3650
+				}
+				any_pop = {
+					limit = {
+						is_primary_culture = no
+						is_accepted_culture = no
+					}
+					consciousness = -3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 2
+				owner = { citizenship_policy = full_citizenship }
+			}
+			modifier = {
+				factor = 0.5
+				owner = { citizenship_policy = residency }
+			}
+			modifier = {
+				factor = 0
+				owner = { war_policy = jingoism }
+			}
+			modifier = {
+				factor = 0.5
+				owner = { war_policy = pro_military }
+			}
+			modifier = {
+				factor = 0
+				is_primary_culture = yes
+			}
+		}
+	}	
+}
+
+province_event = {
+	id = 2601
+	title = "Integration Cancelled in $STATENAME$"
+	desc = "There is no longer a need to justify a claim in $STATENAME$, since it already exists."
+	
+	trigger = {
+		has_province_modifier = core_integration
+		is_core = THIS
+	}
+	
+	mean_time_to_happen = {
+		days = 3
+	}
+	
+	option = {
+		name = "So be it."
+		state_scope = {
+			any_owned = {
+				limit = {
+					has_province_modifier = core_integration
+					is_core = THIS
+				}
+				remove_province_modifier = core_integration
+			}
+		}
+	}
+}
+	
+province_event = {
+	id = 2605
+	title = "EVTNAME2605" #$PROVINCENAME$ Integrated into $COUNTRY$
+	desc = "EVTDESC2605"
+	
+	trigger = {
+		has_province_modifier = core_integration
+		NOT = {
+			is_core = THIS
+			has_province_modifier = nationalist_agitation
+		}
+		controlled_by = THIS
+		owned_by = THIS
+		is_colonial = no
+		OR = {
+			is_primary_culture = yes
+			is_accepted_culture = yes
+		}
+		owner = {
+			civilized = yes
+			war = no
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 48
+		modifier = {
+			factor = 0.75
+			owner = { nationalism_n_imperialism = 1 }
+		}
+		modifier = {
+			factor = 1.5
+			is_primary_culture = no
+			is_accepted_culture = yes
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 2
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 3
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 4
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 5
+		}
+	}
+	
+	option = {
+		name = "Long live $COUNTRY$!"
+		owner = { prestige = 2 }
+		remove_province_modifier = core_integration
+		add_core = THIS
+	}
+}
+
+province_event = {
+	id = 2620
+	title = "EVTNAME2620" #Flags Flying in $PROVINCENAME$
+	desc = "EVTDESC2620"
+	
+	trigger = {
+		is_core = THIS
+		any_core = {
+			exists = yes
+			NOT = { tag = THIS }
+			NOT = { is_cultural_union = THIS }
+		}
+		has_province_modifier = national_assimilation
+		NOT = {
+			has_province_modifier = national_assimilation_acceptance
+			has_province_modifier = nationalist_agitation
+		}
+		controlled_by = THIS
+		owned_by = THIS
+		is_colonial = no
+		owner = {
+			civilized = yes
+			war = no
+			NOT = { citizenship_policy = full_citizenship }
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 180
+		modifier = {
+			factor = 1.5
+			is_primary_culture = no
+			is_accepted_culture = no
+		}
+		modifier = {
+			factor = 0.5
+			is_primary_culture = yes
+		}
+		modifier = {
+			factor = 0.75
+			is_accepted_culture = yes
+		}
+		modifier = {
+			factor = 1.5
+			any_neighbor_province = { has_province_modifier = nationalist_agitation }
+		}
+		modifier = {
+			factor = 1.5
+			has_province_modifier = national_assimilation_rejection
+		}
+		modifier = {
+			factor = 1.25
+			NOT = { has_province_modifier = national_assimilation_rejection }
+			any_neighbor_province = { has_province_modifier = national_assimilation_rejection }
+		}
+		modifier = {
+			factor = 0.75
+			any_neighbor_province = { has_province_modifier = national_assimilation_acceptance }
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 2
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 3
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 4
+		}
+		modifier = {
+			factor = 1.2
+			average_militancy = 5
+		}
+	}
+	
+	option = {
+		name = "Well done, $PROVINCENAME$!"
+		remove_province_modifier = national_assimilation_rejection
+		add_province_modifier = {
+			name = national_assimilation_acceptance
+			duration = -1
+		}
+		any_pop = {
+			consciousness = -3
+			militancy = -2
+		}
+		any_pop = {
+			limit = {
+				is_primary_culture = no
+				is_accepted_culture = no
+			}
+		}
+	}
+}
+
+province_event = {
+	id = 2625
+	title = "EVTNAME2625" #$PROVINCENAME$ Assimilated
+	desc = "EVTDESC2625"
+	
+	trigger = {
+		is_core = THIS
+		any_core = {
+			exists = yes
+			NOT = { tag = THIS }
+			NOT = { truce_with = THIS }
+			NOT = { alliance_with = THIS }
+			NOT = { is_cultural_union = THIS }
+			war = no
+		}
+		OR = {
+			is_primary_culture = yes
+			is_accepted_culture = yes
+		}
+		has_province_modifier = national_assimilation_acceptance
+		NOT = { has_province_modifier = nationalist_agitation }
+		controlled_by = THIS
+		owned_by = THIS
+		is_colonial = no
+		owner = {
+			civilized = yes
+			war = no
+			NOT = { citizenship_policy = full_citizenship }
+			NOT = { badboy = 0.92 }
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 300
+		modifier = {
+			factor = 1.2
+			owner = {
+				is_greater_power = no
+				is_secondary_power = no
+			}
+		}
+		modifier = {
+			factor = 1.5
+			is_primary_culture = no
+			is_accepted_culture = yes
+		}
+		modifier = {
+			factor = 0.75
+			owner = { nationalism_n_imperialism = 1 }
+		}
+		modifier = {
+			factor = 0.75
+			owner = { revolution_n_counterrevolution = 1 }
+		}
+		modifier = {
+			factor = 1.1
+			average_militancy = 2
+		}
+		modifier = {
+			factor = 1.1
+			average_militancy = 3
+		}
+		modifier = {
+			factor = 1.1
+			average_militancy = 4
+		}
+		modifier = {
+			factor = 1.1
+			average_militancy = 5
+		}
+	}
+	
+	option = {
+		name = "Long live $COUNTRY$!"
+		owner = {
+			prestige = 5
+		}
+		remove_province_modifier = national_assimilation
+		remove_province_modifier = national_assimilation_acceptance
+		add_province_modifier = {
+			name = national_assimilation_complete
+			duration = 10
+		}
+		any_pop = { militancy = -4 }
+		any_country = {
+			limit = {
+				exists = yes
+				NOT = { truce_with = THIS }
+				NOT = { alliance_with = THIS }
+				NOT = { tag = THIS }
+				NOT = { is_cultural_union = THIS }
+				war = no
+				any_core = {
+					owned_by = THIS
+					has_province_modifier = national_assimilation_complete
+				}
+			}
+			country_event = 2626
+		}
+	}
+}
+
+country_event = {
+	id = 2626
+	title = "EVTNAME2626" #$COUNTRY_ADJ$ Claims in $FROMCOUNTRY$
+	desc = "EVTDESC2626"
+	picture = "nationalists"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "There is nothing we can do."
+		prestige = -5
+		FROM = {
+			random_owned = {
+				limit = {
+					is_core = THIS
+					has_province_modifier = national_assimilation_complete
+				}
+				remove_core = THIS
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.1
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.5
+				FROM = {
+					NOT = { brigades_compare = 1 }
+				}
+			}
+			modifier = {
+				factor = 0.75
+				FROM = {
+					NOT = { brigades_compare = 2 }
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "We will not stand for this!"
+		relation = { who = FROM value = -50 }
+		random_owned = {
+			limit = {
+				owner = { is_greater_power = yes }
+				FROM = { is_greater_power = no }
+			}
+			owner = {
+				diplomatic_influence = { who = FROM value = -50 }
+			}
+		}
+		random_owned = {
+			limit = {
+				owner = { is_greater_power = no }
+				FROM = { is_greater_power = yes }
+			}
+			FROM = {
+				diplomatic_influence = { who = THIS value = -50 }
+			}
+		}
+		casus_belli = {
+			target = FROM
+			type = acquire_state
+			months = 60
+		}
+		casus_belli = {
+			target = FROM
+			type = humiliate
+			months = 12
+		}
+		FROM = {
+			random_owned = {
+				limit = {
+					is_core = THIS
+					has_province_modifier = national_assimilation_complete
+				}
+				remove_core = THIS
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.1
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.75
+				FROM = { brigades_compare = 2 }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { brigades_compare = 3 }
+			}
+		}
+	}
+}

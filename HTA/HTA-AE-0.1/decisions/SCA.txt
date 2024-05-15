@@ -1,0 +1,84 @@
+political_decisions = {
+
+	form_scandinavia = {
+		news = yes
+		news_desc_long = "form_scandinavia_NEWS_LONG"
+		news_desc_medium = "form_scandinavia_NEWS_MEDIUM"
+		news_desc_short = "form_scandinavia_NEWS_SHORT"
+		potential = {
+			NOT = { exists = SCA }
+			OR = {
+			tag = DEN
+			tag = SWE
+			tag = NOR
+			}
+
+		}
+		
+		allow = {
+			idealism = 1
+			war = no
+			SCA = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							OR = {
+								in_sphere = THIS
+								vassal_of = THIS
+							}
+							
+						}
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 20
+			change_tag = SCA
+			all_core = { remove_core = DEN }
+			all_core = { remove_core = SWE }
+			all_core = { remove_core = ICL }
+			all_core = { remove_core = NOR }
+			add_accepted_culture = swedish
+			add_accepted_culture = danish
+			add_accepted_culture = norwegian
+			inherit = DEN
+			inherit = SWE
+			inherit = NOR
+			any_country = {
+				limit = {
+					is_culture_group = scandinavian
+					NOT = { has_country_flag = post_colonial_country }
+				}
+				all_core = { add_core = SCA }
+			}
+		}
+	}
+	expand_east = {
+		picture = dreams_of_empire
+		potential = {
+			tag = SCA
+			NOT = { has_country_flag = trolled_him }
+		}
+		allow = {
+			year = 1860
+			war = no
+			SCA = {
+				all_core = {
+					owned_by = THIS
+				}
+			}
+		}
+		effect = {
+			add_accepted_culture = finnish
+			add_accepted_culture = sami
+			add_accepted_culture = ugrian
+			add_accepted_culture = estonian
+			add_accepted_culture = latvian
+			FIN = { all_core = { add_core = SCA } }
+			set_country_flag = trolled_him
+		}
+	}
+}

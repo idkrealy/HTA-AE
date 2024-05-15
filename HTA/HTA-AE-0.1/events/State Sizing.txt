@@ -1,0 +1,41 @@
+country_event = {
+	id = 700700
+	title = "State Sizing 1836"
+
+	trigger = {
+		tag = GHO
+		NOT = { has_country_modifier = sizing_cooldown }
+		NOT = { year = 1870 }
+	}
+
+	immediate = { add_country_modifier = { name = sizing_cooldown duration = 350 } }
+
+	option = {
+		any_country = { any_owned = { limit = { state_scope = { NOT = { total_pops = 80000 } owner = { war = no } } } add_core = STR remove_core = SMA remove_core = MED remove_core = LRG remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 80000 NOT = { total_pops = 360000 } owner = { war = no } } } add_core = SMA remove_core = STR remove_core = MED remove_core = LRG remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 360000 NOT = { total_pops = 680000 } owner = { war = no } } } add_core = MED remove_core = STR remove_core = SMA remove_core = LRG remove_core = HUG } }		
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 680000 NOT = { total_pops = 900000 } owner = { war = no } } } add_core = LRG remove_core = STR remove_core = SMA remove_core = MED remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 900000 } owner = { war = no } } add_core = HUG remove_core = STR remove_core = SMA remove_core = MED remove_core = LRG } }
+	}
+}
+
+country_event = {
+	id = 700701
+	title = "State Sizing 1870"
+
+	trigger = {
+		tag = GHO
+		NOT = { has_country_modifier = sizing_cooldown1 }
+		year = 1870
+	}
+
+	immediate = { add_country_modifier = { name = sizing_cooldown1 duration = 350 } }
+
+	option = {
+		any_country = { any_owned = { limit = { state_scope = { NOT = { total_pops = 120000 } owner = { war = no } } } add_core = STR remove_core = SMA remove_core = MED remove_core = LRG remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 120000 NOT = { total_pops = 500000 } owner = { war = no } } } add_core = SMA remove_core = STR remove_core = MED remove_core = LRG remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 500000 NOT = { total_pops = 800000 } owner = { war = no } } } add_core = MED remove_core = STR remove_core = SMA remove_core = LRG remove_core = HUG } }		
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 800000 NOT = { total_pops = 1100000 } owner = { war = no } } } add_core = LRG remove_core = STR remove_core = SMA remove_core = MED remove_core = HUG } }
+		any_country = { any_owned = { limit = { state_scope = { total_pops = 1100000 } owner = { war = no } } add_core = HUG remove_core = STR remove_core = SMA remove_core = MED remove_core = LRG } }
+	}
+}				

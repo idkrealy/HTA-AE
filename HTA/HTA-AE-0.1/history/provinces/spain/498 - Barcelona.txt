@@ -1,0 +1,12 @@
+owner = AQT
+controller = AQT
+add_core = CAT
+trade_goods = precious_metal
+life_rating = 40
+naval_base = 2
+state_building = {
+	level = 1 
+	building = fabric_factory
+	upgrade = yes
+}
+

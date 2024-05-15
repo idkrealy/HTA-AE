@@ -1,0 +1,144 @@
+political_decisions = {
+	#Reclaim Anatolia
+	revive_armenian_anatolia = {
+		picture = enact_muhammad_alis_reforms
+		potential = {
+			tag = ARM
+			has_country_flag = RIP_armenian_anatolia
+			873 = { NOT = { is_core = ARM } }
+			876 = { NOT = { is_core = ARM } }
+		}
+		
+		allow = {
+			is_greater_power = yes
+			military_score = 20
+		}
+		
+		effect = {
+			prestige = 10
+			badboy = 1
+			TUR_873 = { add_core = ARM }
+			TUR_876 = { add_core = ARM }
+		}
+	}
+	form_sultanate_of_rum = {
+		potential = {
+			OR = {
+				tag = ARM
+				tag = TCA
+			}
+			NOT = { has_country_flag = rum_formed }
+		}
+		allow = {
+			OR = {
+				ARM = {
+					all_core = { owned_by = THIS }
+				}
+				TCA = {
+					all_core = { owned_by = THIS }
+				}
+			}
+		}
+		effect = {
+			change_tag = RUM
+			prestige = 50
+			860 = { change_province_name = "Neo-Hayastan" }
+			set_country_flag = rum_formed 
+			add_accepted_culture = greek
+			capital = 860
+		}
+	}
+	claim_the_cauc = {
+		potential = {
+			tag = RUM
+			NOT = { has_country_flag = cauc_claimed }
+		}
+		allow = { 
+			war = no
+			owns = 1090
+			1102 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+					owner = { has_country_flag = newly_released_nation }
+					owner = {
+						primary_culture = azerbaijani
+						war = no
+						civilized = yes
+						relation = { who = THIS value = 150 }
+						OR = {
+							is_vassal = no
+							vassal_of = THIS
+						}
+					}
+				}
+			}
+			1098 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+					owner = { has_country_flag = newly_released_nation }
+					owner = {
+						primary_culture = armenian
+						war = no
+						civilized = yes
+						relation = { who = THIS value = 150 }
+						OR = {
+							is_vassal = no
+							vassal_of = THIS
+						}
+					}
+				}
+			}
+		}
+		effect = {
+		add_accepted_culture = georgian
+		add_accepted_culture = armenian
+		add_accepted_culture = azerbaijani
+		set_country_flag = cauc_claimed
+		}
+	}
+	claim_north_cauc = {
+		potential = {
+			tag = RUM
+			NOT = { has_country_flag = claimed_north_cauc }
+		}
+		allow = {
+			war = no
+			is_vassal = no
+			is_disarmed = no
+			war_policy = jingoism
+			OR = {
+				is_greater_power = yes
+				is_secondary_power = yes
+			}
+		}
+		effect = {
+			set_country_flag = claimed_north_cauc
+			badboy = 5
+			add_accepted_culture = north_caucasian
+			CIR = {
+				all_core = { add_core = RUM }
+			}
+			DAG = {
+				all_core = { add_core = RUM }
+			}
+			any_country = {
+				limit = {
+					any_owned_province = {
+						OR = {
+							is_core = CIR
+							is_core = DAG
+						}
+					}
+					NOT = { tag = THIS }
+				}
+				relation = { who = RUM value = -50 }
+				leave_alliance = RUM
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

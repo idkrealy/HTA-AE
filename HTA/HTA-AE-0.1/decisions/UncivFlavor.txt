@@ -1,0 +1,76 @@
+political_decisions = {
+	establish_the_dar_al_funun = {
+		potential = {
+			tag = PER
+			NOT = { has_country_flag = dar_al_funun_built }
+		}
+		allow = {
+			literacy = 0.15
+		}
+		effect = {
+			years_of_research = 0.5
+			any_pop = { consciousness = 0.5 }
+			set_country_flag = dar_al_funun_built
+			add_country_modifier = {
+				name = dar_al_funun
+				duration = -1
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						civilized = no
+						education_reform = no_education_reform
+					}
+				}
+				owner = {
+					economic_reform = yes_education_reform
+					any_pop = {
+						scaled_militancy = {
+							ideology = liberal
+							factor = 0.5
+						}
+						scaled_militancy = {
+							ideology = conservative
+							factor = 1
+						}
+						scaled_militancy = {
+							ideology = reactionary
+							factor = 3
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	begin_zemene_mesafint = {
+		potential = {
+			civilized = no
+			primary_culture = amhara
+			any_neighbor_country = { primary_culture = amhara }
+			NOT = { 
+				has_global_flag = is_negusa_nagast
+				has_country_modifier = zemene_mesafint
+				foreign_training = yes_foreign_training
+			}
+		}
+		
+		allow = {
+			any_neighbor_country = {
+				primary_culture = amhara
+				war_with = THIS
+			}
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = zemene_mesafint
+				duration = 365
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,310 @@
+NAV = {
+	value = 75
+	level = 4
+	influence_value = 25
+}
+
+GLC = {
+	value = 50
+	level = 4
+	influence_value = 25
+}
+
+POR = {
+	value = 25
+	level = 4
+	influence_value = 25
+}
+
+DAU = {
+	value = 100
+	level = 4
+	influence_value = 25
+}
+
+BRT = {
+	value = 75
+	level = 4
+	influence_value = 25
+}
+CMP = { value = 100 }
+HIS = {
+	truce_until = 1839.9.25
+}
+
+MEX = { value = -50 }
+FRA = { value = -50 }
+YUC = { value = -30 }
+NPL = { value = 5 }
+leader = {
+	name = "Minediamonds"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_5.1
+	background = attack_minus_1.1
+	prestige = 0.001
+}
+leader = {
+	name = "Base guy 1"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_1.1
+	background = attack_1.1
+	prestige = 0.001
+}
+leader = {
+	name = "Base guy 2"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_1.1
+	background = attack_1.1
+	prestige = 0.001
+}
+leader = {
+	name = "Base guy 3"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_1.1
+	background = attack_1.1
+	prestige = 0.001
+}
+leader = {
+	name = "Base guy 4"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_1.1
+	background = attack_1.1
+	prestige = 0.001
+}
+leader = {
+	name = "Base guy 5"
+	picture = asian_general_3
+	date = 1835.1.1
+	type = land
+	personality = defence_1.1
+	background = attack_1.1
+	prestige = 0.001
+}
+
+army = {
+	name = "Armada Reial"
+	location = 461
+	regiment = {
+		name= "Palace Guards"
+		type = infantry
+		home = 461
+	}
+	regiment = {
+		name= "1. Enfantaria"
+		type = infantry
+		home = 458
+	}
+	regiment = {
+		name= "2. Enfantaria"
+		type = infantry
+		home = 447
+	}
+	regiment = {
+		name= "3. Enfantaria"
+		type = infantry
+		home = 448
+	}
+	regiment = {
+		name= "1. Artilharia"
+		type = hussar
+		home = 455
+	}
+	regiment = {
+		name= "2. Artilharia"
+		type = artillery
+		home = 462
+	}
+	regiment = {
+		name= "1. Cavalaria"
+		type = artillery
+		home = 456
+	}
+	regiment = {
+		name= "2. Cavalaria"
+		type = artillery
+		home = 459
+	}
+	regiment = {
+		name = "1. Enfantaria"
+		type = artillery
+		home = 470
+	}
+	regiment = {
+		name = "2. Enfantaria"
+		type = artillery
+		home = 472
+	}
+}
+
+army = {
+	name = "Armada Real"
+	location = 467
+	regiment = {
+		name= "Palace Guards"
+		type = infantry
+		home = 467
+	}
+	regiment = {
+		name= "1. Enfantaria"
+		type = infantry
+		home = 468
+	}
+	regiment = {
+		name= "2. Enfantaria"
+		type = infantry
+		home = 469
+	}
+	regiment = {
+		name= "3. Enfantaria"
+		type = infantry
+		home = 471
+	}
+	regiment = {
+		name= "1. Artilharia"
+		type = hussar
+		home = 454
+	}
+	regiment = {
+		name= "2. Artilharia"
+		type = artillery
+		home = 453
+	}
+	regiment = {
+		name= "1. Cavalaria"
+		type = artillery
+		home = 452
+	}
+	regiment = {
+		name= "2. Cavalaria"
+		type = artillery
+		home = 451
+	}
+	regiment = {
+		name = "1. Enfantaria"
+		type = artillery
+		home = 449
+	}
+	regiment = {
+		name = "2. Enfantaria"
+		type = artillery
+		home = 450
+	}
+}
+army = {
+	name = "Exèrcit Català"
+	location = 498
+	regiment = {
+		name = "1era Divisió d'Infanteria"
+		type = infantry
+		home = 498
+	}
+	regiment = {
+		name = "2ona Divisió d'Infanteria"
+		type = infantry
+		home = 464
+	}
+	regiment = {
+		name = "1era Divisió de Cavalleria"
+		type = dragoon
+		home = 498
+	}
+	regiment = {
+		name = "1era Divisió d'Artilleria"
+		type = artillery
+		home = 501
+	}
+}
+
+navy = {
+	name = "Esquadró Català"
+	location = 498
+	ship = {
+		name = "Catalunya"
+		type = manowar
+	}
+	ship = {
+		name = "Noguera"
+		type = frigate
+	}
+	ship = {
+		name = "Mart"
+		type = frigate
+	}
+	ship = {
+		name = "Sant Gabriel"
+		type = clipper_transport
+	}
+	ship = {
+		name = "Sant Antoni"
+		type = clipper_transport
+	}
+}
+
+navy = {
+	name = "Scadrona Europaen"
+	location = 461
+	ship = {
+		name = "Aymar II"
+		type = manowar
+	}
+	ship = {
+		name = "Raimond V"
+		type = manowar
+	}
+	ship = {
+		name = "Loui I"
+		type = manowar
+	}
+	ship = {
+		name = "Archambaut IV"
+		type = manowar
+	}
+	ship = {
+		name = "Tolosa"
+		type = frigate
+	}
+	ship = {
+		name = "St. Guilhem"
+		type = frigate
+	}
+}
+
+ai = {
+	initialized = yes
+	consolidate = yes
+	date = "1836.1.1"
+	static = no
+	personality = bold
+
+
+	befriend = { id="FRA" value = 50 }
+	threat = { id="PDN" value = 50 }
+	threat = { id="NPL" value = 50 }
+	threat = { id="HIS" value = 50 }
+	threat = { id="ITA" value = 50 }
+
+
+	rival = { id="NPL" value=200 }
+	rival = { id="ITA" value=200 }
+	rival = { id="GER" value=150 }
+	rival = { id="HIS" value=200 }
+	rival = { id="AGR" value=100 }
+	rival = { id="BOH" value=100 }
+	rival = { id="ZAC" value=100 }
+	rival = { id="QIN" value=150 }
+	rival = { id="GXI" value=200 }
+	rival = { id="JAP" value=100 }
+	rival = { id="NET" value=100 }
+	rival = { id="PDN" value=100 }
+	rival = { id="BYZ" value=200 }
+}
